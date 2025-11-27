@@ -1,4 +1,4 @@
-import 'package:flutter_app_fs/data/models/personaje.dart';
+import 'package:flutter_app_fs/personajes/data/models/personaje.dart';
 
 // ANOTACIÓN: Clase base abstracta para todos los estados
 abstract class PersonajeState {}

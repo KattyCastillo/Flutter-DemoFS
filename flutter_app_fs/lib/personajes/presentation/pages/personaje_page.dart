@@ -1,11 +1,12 @@
 // lib/presentation/pages/home_page.dart
 import 'package:flutter/material.dart';
-import 'package:flutter_app_fs/presentation/cubit/personaje_cubit.dart';
-import 'package:flutter_app_fs/presentation/cubit/personaje_state.dart';
+import 'package:flutter_app_fs/personajes/presentation/cubit/personaje_cubit.dart';
+import 'package:flutter_app_fs/personajes/presentation/cubit/personaje_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
-class HomePage extends StatelessWidget {
-  const HomePage({super.key});
+class PersonajePage extends StatelessWidget {
+  const PersonajePage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -13,6 +14,18 @@ class HomePage extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Personajes Marvel (BLoC + Provider)'),
         centerTitle: true,
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.settings),
+            onPressed: () {
+              // Opción A: Navegar por PATH (ruta literal)
+              // context.go('/settings');
+
+              // Opción B (RECOMENDADA): Navegar por NOMBRE de la ruta
+              context.goNamed('settings');
+            },
+          ),
+        ],
       ),
       // ANOTACIÓN CLAVE: BlocBuilder escucha el Cubit y el Estado
       // Reconstruye solo esta parte del widget cuando un nuevo estado es emitido.
@@ -83,6 +96,19 @@ class HomePage extends StatelessWidget {
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
                     ),
+                    onTap: () {
+                      final characterId =
+                          character.id; // Obtenemos el ID del personaje.
+
+                      // Opción A: Navegar por PATH (ruta literal)
+                      // Reemplazamos :characterId en el path por el valor real.
+                      // context.go('/detail/$characterId');
+
+                      // Opción B (RECOMENDADA): Navegar por NOMBRE de la ruta
+                      context.goNamed('detail', pathParameters: {
+                        'characterId': characterId.toString()
+                      });
+                    },
                   ),
                 );
               },

@@ -1,5 +1,5 @@
-import 'package:flutter_app_fs/presentation/cubit/personaje_state.dart';
-import 'package:flutter_app_fs/services/marvel_service.dart';
+import 'package:flutter_app_fs/personajes/presentation/cubit/personaje_state.dart';
+import 'package:flutter_app_fs/personajes/services/marvel_service.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 // ANOTACIÓN: El Cubit extiende Cubit<CharacterState> e inicia con CharacterInitial()

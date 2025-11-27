@@ -1,5 +1,5 @@
 import 'dart:convert';
-import 'package:flutter_app_fs/data/models/personaje.dart';
+import 'package:flutter_app_fs/personajes/data/models/personaje.dart';
 import 'package:http/http.dart' as http;
 import 'package:crypto/crypto.dart';
 
@@ -36,24 +36,24 @@ class MarvelService {
         );
 
     try {
-      // return _createMockPersonajes();
+      return _createMockPersonajes();
 
-      final response = await _client.get(url);
+      // final response = await _client.get(url);
 
-      if (response.statusCode == 200) {
-        // La petición fue exitosa (código 200)
-        final Map<String, dynamic> data = jsonDecode(response.body);
+      // if (response.statusCode == 200) {
+      //   // La petición fue exitosa (código 200)
+      //   final Map<String, dynamic> data = jsonDecode(response.body);
 
-        // ANOTACIÓN: Navegamos a la parte de la respuesta que contiene los datos
-        final List results = data['data']['results'];
+      //   // ANOTACIÓN: Navegamos a la parte de la respuesta que contiene los datos
+      //   final List results = data['data']['results'];
 
-        // Mapeamos la lista de JSON a una lista de objetos Character
-        return results.map((json) => Personaje.fromJson(json)).toList();
-      } else {
-        // La API retornó un error (ej. 404, 500)
-        throw Exception(
-            'Fallo al cargar personajes. Código: ${response.statusCode}');
-      }
+      //   // Mapeamos la lista de JSON a una lista de objetos Character
+      //   return results.map((json) => Personaje.fromJson(json)).toList();
+      // } else {
+      //   // La API retornó un error (ej. 404, 500)
+      //   throw Exception(
+      //       'Fallo al cargar personajes. Código: ${response.statusCode}');
+      // }
     } catch (e) {
       // Error de red o cualquier otra excepción
       throw Exception('Error de conexión o datos: $e');
